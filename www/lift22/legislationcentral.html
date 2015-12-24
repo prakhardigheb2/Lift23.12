@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+    <title>LIFT</title>
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <!-- scripts -->
+    <!--<script src="./Scripts/jquery-1.6.4.min.js"></script>-->
+    
+    
+    <script src="./Scripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+    <script src="js/jquery.mobile-1.1.0.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/trainner.css">
+    
+    
+    <style>
+	.linkcolore
+	{
+		color:#06F;
+		word-wrap: break-word;
+	}
+	</style>
+	
+    <script type="text/javascript" charset="utf-8" src="cordova-2.1.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="pdfviewer.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script>
+    
+		var bid, dealid, url, fileName, folder;
+		var booktitle;
+		var text_null;
+	    var lang =  window.localStorage.getItem("key");
+				$(window).load(function()
+				{
+					/*function getUrlVars()
+					{
+						var  vars = {};
+						var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+						{
+							vars[key]=value;
+		
+						});
+						return vars;
+					}*/
+	 				bid = window.localStorage.getItem("bookid");
+					//alert(bid);
+					var Book_Title = new Array();
+					var name = new Array();
+					var act_no = new Array();
+					var enacted_by= new Array();
+					var received_assent_of_the_president_on = new Array();
+					var published_in = new Array();
+					var came_in_force = new Array();
+					var salient_features = new Array();
+					var brief_details = new Array();
+					var ref_side = new Array();
+					$.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final/get_legislation.php?book_id="+bid+"&type=central",function(data)
+					{
+	 					var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+						var jsonData = JSON.parse(obj);
+    					for (var i in jsonData.get_legislation)
+    					{
+							var books = jsonData.get_legislation[i];
+							Book_id =jsonData.get_legislation[i];
+							Book_Title[i]=books.book_name;
+							name[i]=books.name;
+							act_no[i]=books.act_no;
+							enacted_by[i]=books.enacted_by;
+							received_assent_of_the_president_on[i]=books.receiver_by_president_on;
+							published_in[i]=books.published_in;
+							came_in_force[i]=books.came_in_force;
+							salient_features[i]=books.salient_features;
+							brief_details[i]=books.brief_deatils;
+							ref_side[i]=books.ref_url;
+							
+							var book_name = books.name;
+							var books_name =books.book_name;
+							var book_actno = books.act_no;
+							var book_enactedby = books.enacted_by;
+							var book_receiverbypresidenton = books.receiver_by_president_on;
+							var book_publishedin = books.published_in;
+							
+							var book_cameinforce = books.came_in_force;
+							var book_salientfeatures = books.salient_features;
+							var book_briefdeatils = books.brief_deatils;
+							var book_refurl = books.ref_url;
+							
+							if(books_name == undefined && book_name == undefined && book_actno == undefined && book_enactedby == undefined && book_receiverbypresidenton == undefined && book_publishedin == undefined && book_cameinforce == undefined && book_salientfeatures == undefined && book_briefdeatils == undefined && book_refurl == undefined)
+							{
+								books_name = "Content not uploaded";
+								book_name = "Content not uploaded";
+								book_actno = "Content not uploaded";
+								book_enactedby ="Content not uploaded";
+								book_receiverbypresidenton = "Content not uploaded"
+								book_publishedin = "Content not uploaded";
+								book_cameinforce = "Content not uploaded";
+								book_salientfeatures = "Content not uploaded";
+								book_briefdeatils = "Content not uploaded";
+								book_refurl = "Content not uploaded";
+							
+							}
+							var listValue=	"<li><div class='login-list-view'>" +
+											"<div class='collor'><span style='font-size:18px; color: #96011a;'>Name : </span><br>"+book_name+"</div>" +"<br>"+
+											"<div ><span style='font-size:18px; color: #96011a;'>Act No : </span><br>"+book_actno+"</div>" +"<br>"+
+											"<div ><span style='font-size:18px; color: #96011a;'>Enacted by :</span><br> "+book_enactedby+"</div>" +"<br>"+
+											"<div ><span style='font-size:18px; color: #96011a;'>Received Assent of the President  on : </span><br>" +book_receiverbypresidenton+"</div>" +"<br>"+
+											"<div ><span style='font-size:18px; color: #96011a;'>Published in : </span><br>"+book_publishedin+"</div>" +"<br>"+
+											"<div><span style='font-size:18px; color: #96011a;'>Came in Force : </span><br>"+book_cameinforce+"</div>" +"<br>"+
+											"<div ><span style='font-size:18px; color: #96011a;'>Salient Features :</span><br>"+book_salientfeatures+"</div>" +"<br>"+
+											"<div class='collor' ><span style='font-size:18px; color: #96011a;'>Brief Details :</span><br>"+book_briefdeatils+"</div>" +"<br>"+
+											"<div  ><span style='font-size:18px; color: #96011a;'>For Full Text :</span><br></div><br>"+
+											"<div class='linkcolore' id="+book_refurl+" onclick='viewdetails(this);'> Touch here</div></div></li>";
+
+							$("#BookList").append(listValue);
+							//$('#BookList').listview('refresh');
+							  $('#dvLoading').fadeOut(2000);                
+	
+    					} 
+							var listvalue1="<label>"+"<div>"+books_name+"</div>"+"</label>";
+							$("#labeldiv").append(listvalue1);
+							
+   					 });
+				});
+		
+		function back()
+		{
+			window.history.back()
+		}
+		function viewdetails(id)
+			  {
+				  $('#dvLoading').fadeIn('slow');
+				  dealid = id.id;
+				  downloadAndOpenPDF(dealid, 'LIFT.pdf', '/sdcard/LIFT/');
+				  //downloadAndOpenPDF('http://www.egazette.nic.in/WriteReadData/2014/161130.pdf', 'LIFT.pdf', '/sdcard/LIFT/');
+				  
+			  }
+			  
+			  //function 
+  	</script> 
+	
+    <style>
+html, body {
+	height: 100%;
+	/*background: #000000;*/
+}
+.link {
+	display: block;
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #ef7f01;
+	font-size:22px;
+	text-decoration: none;
+}
+</style>
+    </head>
+    <body>
+    <script>
+		$(window).load(function()
+		{
+			  //$('#dvLoading').fadeOut(2000);
+			  
+		});
+		</script>
+<div data-role="page" id="get_legislation"  >
+	<div id="dvLoading"></div>
+    	<!-- header -->
+        <div data-role="header" data-position="fixed" class="page-header">
+            <div class="logo">
+               
+                <div  class="hdlogo" >Law In Finger Tips</div>
+            </div>
+        </div>
+    	<!--/header --> 
+  	<!-- main content -->
+        <div data-role="content" >
+                <div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+                    <div style="width:60%; margin:auto; text-align:center; "> <label id="labeldiv" style="color:#333;"></label> </div>
+                    <div class="login-list-view" style="margin-top:10px;" id="login-list">
+                    <!--<a href="#" class="link" onclick="downloadAndOpenPDF('http://www.egazette.nic.in/WriteReadData/2014/161130.pdf', 'LIFT.pdf', '/sdcard/LIFT/');"><h1>LIFT PDF!</h1></a>-->
+                        <ul data-role="listview"  id="BookList">    
+                        </ul>
+                    </div>
+                </div>
+                <div class="clear" style="margin-top:25px;"></div>                 
+        </div><!-- main content end-->
+</div>
+	<!-- SCRIPTS -->
+	<!-- add to homepage bubble on iphone, ipad  -->
+	
+	<!-- /add to homepage bubble on iphone, ipad  --> 
+</body>
+</html>

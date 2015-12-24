@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <script type="text/javascript">
+ 		function back()
+		{
+			window.history.back()
+		}
+  	</script>
+    <script>
+		$(window).load(function()
+		{
+			  $('#dvLoading').fadeOut(2000);
+  		});
+	</script>    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	<div data-role="page" id="view_book" >
+	<div data-role="header" data-position="fixed" class="page-header">
+   	<div class="logo">
+    <!--<a onclick="back();"> <div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>-->
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+    <div data-role="content" >
+  	<div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+    <div style="width:60%; margin:auto; text-align:center; font-family: 'Open Sans'; font-size:25px; ">
+லிஃப்டைப்  பற்றி
+   </div>
+	<div class="login-list-view" style="margin-top:10px;" id="login-list">
+		<ul data-role="listview"  id="BookList">    
+    		<li style="text-align:justify;">“லிஃப்ட்” செயலி, இந்திய சட்டத்தைப்பற்றியது ஆகும். மக்களுக்கும், வழக்கறிஞர்களுக்கும், தேவையான சட்ட தகவல்களை அறிவித்தலே லிஃப்டின் நோக்கம். ஒவ்வொரு மாதமும், தெரிவு செய்யப்பட்ட, இந்திய மற்றும் தமிழ்நாடு மாநில அரசின் புதிய சட்டங்கள் மற்றும் உச்சநீதிமன்ற, சென்னை உயர்நீதிமன்ற வழக்குகளை ஒரு புதிய ஒழுங்குடன், அனைவருக்கும் ஏற்ற முறையில் லிஃப்ட் வழங்குகிறது. மேலும், கருத்துமேடை என்ற ஒரு பிரிவு பல்வேறு தகவல்களை தாங்கி வருகிறது. லிஃப்டில் அனைத்தும் தமிழ், ஆங்கிலம் ஆகிய இரு மொழிகளிலும் வழங்கப்படுகிறது. பயனாளிகளின் தேவைகளை நன்கு அறிந்த அனுபவம் வாய்ந்த தொழில்முறை வழக்கறிஞர்களால் லிஃப்ட் இயற்றப்படுகிறது.</li>
+            
+             <li style="text-align:center;">LIFT grants permission to its users to copy, reproduce, and print or use the content of all the five sections of the ‘LIFT of the Month’ for their professional / personal use, except commercial exploitation. LIFT INDIA only reserves its rights of the name, logo and its one-of-a-kind format.</li>
+		</ul>
+	</div>
+	</div>
+    <div class="clear" style="margin-top:25px;"></div>
+    
+	</div>
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>

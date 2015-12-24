@@ -1,8 +1,8 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.satya.prabh" version="1.0.0">
-  <name>satya</name>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.lift.hyt" version="1.0.0">
+  <name>Lift</name>
   <description>Hello World sample application that responds to the deviceready event.</description>
   <author href="http://phonegap.com" email="support@phonegap.com">PhoneGap Team</author>
-  <content src="index.html"/>
+  <content src="first.html"/>
   <preference name="permissions" value="none"/>
   <preference name="orientation" value="default"/>
   <preference name="target-device" value="universal"/>
@@ -36,9 +36,6 @@
   <gap:plugin name="org.apache.cordova.network-information"/>
   <gap:plugin name="org.apache.cordova.splashscreen"/>
   <gap:plugin name="org.apache.cordova.vibration"/>
-   <js-module src="www/OpenFileNative.js" name="OpenFileNative">
-        <clobbers target="openFileNative" />
-    </js-module>
   <icon src="icon.png"/>
   <icon src="www/res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi"/>
   <icon src="www/res/icon/android/icon-48-mdpi.png" gap:platform="android" gap:qualifier="mdpi"/>
@@ -74,20 +71,9 @@
   <allow-intent href="geo:*"/>
   <platform name="android">
     <allow-intent href="market:*"/>
-	 <config-file target="res/xml/config.xml" parent="/*">
-	   <feature name="OpenFileNative">
-                <param name="android-package" value="org.apache.cordova.openfilenative.OpenFileNative" />
-            </feature>
-        </config-file>
-        <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        </config-file>
-        <source-file src="src/android/OpenFileNative.java" target-dir="src/org/apache/cordova/openfilenative" />
-		   
   </platform>
   <platform name="ios">
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
   </platform>
- 
 </widget>

@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta charset="utf-8">
+	<title>LIFT</title> 
+   <!-- <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>-->
+      <script src="js/jquery1.min.js"></script>
+  	<!--<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>-->
+    
+    <!---top slider--------------->
+   <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="slider_css/demo.css"></script>-->
+    <script type="text/javascript" src="slider_css/jquery.mmenu.css"></script>
+    <script type="text/javascript" src="slider_js/jquery.mmenu.min.js"></script>
+    <script type="text/javascript">
+	<!------top slider--------------->
+	
+			$(function() {
+				$('nav#menu').mmenu();
+			});
+	<!------------------>
+		  function back()
+		  {
+			  window.history.back()
+		  }
+  	</script>
+	<script>
+		$(window).load(function()
+		{
+			  $('#dvLoading').fadeOut(2000);
+		});
+	
+	</script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+    <style>
+		.aboutcontent
+		{
+			width:99%;
+			padding:0 10px;
+			border:1px solid #CCC;
+			margin:0 auto;
+			box-sizing:border-box;
+		}
+		.aboutcontent p
+		{
+			text-align:justify;
+		}
+		.aboutcontent h2
+		{
+			text-align:center;
+			font-family: 'Open Sans';
+  			/*font-size: 25px;*/
+			margin:0;
+			padding:10px 0;
+			font-weight:500;
+			border-bottom:1px solid #CCC;
+		}
+		.backarrow
+		{
+			  background: center center no-repeat transparent !important;
+			  background-image:url(images/back-arrow.png) !important;
+			  display: block !important;
+			  width: 40px !important;
+			  height: 40px !important;
+			  position: absolute !important;
+			  top: 0 !important;
+			  left: -5px !important;
+		}
+		a
+		{
+			font-family: Arial, Helvetica, Verdana;
+		}
+	</style>
+</head> 
+<body>
+
+ 	<div id="dvLoading"></div>
+	<div data-role="page">
+    <!-------HEader starting----------------->
+            <div id="page">
+                <div class="header">
+                    <a href="#menu" class="backarrow"><!--<div style="padding-left: 36px; width: 90px;">About LIFT</div>--><!--<img src="images/logo-head.png" class="head-img">--></a>
+                    <span class="header-title">Law In Finger Tips</span>
+                    <span class="language-change"><a id="language-change1" href="homeT.html"> தமிழ்</a></span>
+                </div>
+           </div>
+			<nav id="menu" class="sub-txt">
+				<ul>
+					<li class="lift-space"><a class="lift-menu" href="home.html"><div class="img-mnu"><img src="images/logo-head-2.png"></div><div class="txt-mnu">LIFT Home</div></a></li>
+                    <li class="lift-space">
+                    	<a class="lib-menu" href="lift-screen-10.html">About App</a>
+                    </li>
+					<li class="lift-space">
+                    	<a class="lib-menu" href="lift-screen-11.html">How to Use</a>
+                    </li>
+                    <li class="lift-space">
+                    	<a class="lib-menu" href="lift-screen-12.html">Aim & Disclaimer</a>
+                    </li>
+					<li class="lift-space">
+                    	<a class="lib-menu" href="lift-screen-13.html">Contact Us</a>
+                    </li>
+				</ul>
+			</nav>
+		
+        
+<!--------Header End---------------->
+	
+  	<div data-role="content" >
+    	
+        <div class="aboutcontent">
+        <h2>About App</h2>
+        <p>LIFT (Law in Finger Tips) is easy access to Indian Law. With a strong and crystal clear mission to provide greatly useful legal information in a well cut-out and simple, yet proficient and professional manner to the needs of experts as well as those of the general public, every month LIFT presents carefully and viably selected Legislations of the Union of India and the State of Tamil Nadu, decided cases of the Supreme Court of India and the Madras High Court in an exceptional style. Furthermore it contains a ‘Forum’ section containing related information and tips in an interesting fashion. Every section of the content made available, is written by highly experienced professionals who are very much in active practice and hence understand the needs of all users, thereby making this app extremely useful and highly trustable. The fact that content is available in both English and Tamil, for free, doubles the already high utility and value of this app.</p>
+        
+        <p>LIFT grants permission to its users to copy, reproduce, and print or use the content of all the five sections of the ‘LIFT of the Month’ for their professional / personal use, except commercial exploitation. LIFT INDIA only reserves its rights of the name, logo and its one-of-a-kind format.</p>
+        </div>
+        
+    </div>
+    </a>
+    <div class="clear" style="margin-top:25px;"></div>
+	</div><!-- /page -->
+    
+    
+	<!-- SCRIPTS -->
+	<!-- add to homepage bubble on iphone, ipad  -->
+	<script type="text/javascript">
+	if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+	{
+		document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+		document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+	}
+	</script>
+	<!-- /add to homepage bubble on iphone, ipad  --> 
+
+</body>
+</html>

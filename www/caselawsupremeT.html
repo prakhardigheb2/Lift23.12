@@ -1,0 +1,164 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html"; charset="utf-8">
+	<title>LIFT</title> 
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png"/>
+    <!-- scripts -->
+    <script type="text/javascript" charset="utf-8" src="cordova-2.1.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="pdfviewer.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    
+	<script src="js/jquery-1.6.4.min.js"></script>
+	<script src="js/jquery.mobile-1.1.0.min.js"></script>
+    <script>
+		var bid;
+		var booktitle;
+		var text_null;
+		var lang =  window.localStorage.getItem("key");
+ 	
+		//$("#get_case_law").live('pageinit', function(event, ui) 
+			//{
+				$(window).load(function()
+				{
+					/*function getUrlVars()
+					{
+						var  vars = {};
+						var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) 
+						{
+							vars[key]=value;
+		
+						});
+						return vars;
+					}*/
+	 				//bid = getUrlVars()["id"];
+					bid = window.localStorage.getItem("bookid");
+					//alert(bid);
+					var Book_Name = new Array();
+					var Title = new Array();
+					var context = new Array();
+					var question= new Array();
+					var answer = new Array();
+					var ref = new Array();
+	 	    		$.getJSON("http://www.lawinfingertips.com/webservice/Lift_Final_Tamil/get_case_law.php?book_id="+bid+"&type=sc",function(data){
+					var obj = $.parseJSON(JSON.stringify(JSON.stringify(data))); 
+    				var jsonData = JSON.parse(obj);
+    				for (var i in jsonData.get_case_law)
+   					{
+						var books = jsonData.get_case_law[i];
+						Book_id =jsonData.get_case_law[i];
+						Book_Name[i]=books.book_name;
+						Title[i]=books.title;
+						context[i]=books.context;
+						question[i]=books.question;
+						answer[i]=books.answer;
+						ref[i]=books.reference;
+						
+						var book_name = books.book_name;
+						var book_title = books.title;
+							var book_context = books.context;
+							var book_question = books.question;
+							var book_answer = books.answer;
+							var book_reference = books.reference;
+							var ref_url = books.url;
+							
+							//alert(ref_url);
+							
+							if(book_name == undefined && book_title == undefined && book_context == undefined && book_question == undefined && book_answer == undefined && book_reference == undefined && ref_url == undefined)
+							{
+								
+								book_name == "à®¤à®•à®µà®²à¯� à®‡à®²à¯�à®²à¯ˆ";
+								book_title = "à®¤à®•à®µà®²à¯� à®‡à®²à¯�à®²à¯ˆ";
+								book_context = "à®¤à®•à®µà®²à¯� à®‡à®²à¯�à®²à¯ˆ";
+								book_question = "à®¤à®•à®µà®²à¯� à®‡à®²à¯�à®²à¯ˆ";
+								book_answer = "à®¤à®•à®µà®²à¯� à®‡à®²à¯�à®²à¯ˆ";
+								book_reference = "à®¤à®•à®µà®²à¯� à®‡à®²à¯�à®²à¯ˆ";
+								ref_url = "à®¤à®•à®µà®²à¯� à®‡à®²à¯�à®²à¯ˆ";
+							}
+						
+						var listValue=	"<li><div class='login-list-view'>" +
+										"<div><span style='font-size:18px; color: #96011a;'>தலைப்பு :</span><br> "+book_title+"</div>" +"<br>"+
+										"<div><span style='font-size:18px; color: #96011a;'>சூழல் :</span><br> "+book_context+"</div>" +"<br>"+
+										"<div><span style='font-size:18px; color: #96011a;'>கேள்வி  : </span><br>"+book_question+"</div>" +"<br>"+
+										"<div><span style='font-size:18px; color: #96011a;'>பதில் :</span><br> " +book_answer+"</div>" +"<br>"+
+										"<div><span style='font-size:18px; color: #96011a;'>குறிப்பு :</span><br><div style='font-size:14px; color:#000;  '> "+book_reference+"</div></div>" +"<br>"+
+									 /* "<div><span style='font-size:18px; color: #96011a;'>URL :</span><br><span style='font-size:12px;'><a href=" +ref_url+">"+ref_url+"</a></span></div>" +"<br>"+ */
+									    "<div><span style='font-size:18px; color: #96011a;'>uமுழு உரைr :</span><br>"+
+									    "<div class='linkcolore' id="+ref_url+" onclick='viewdetails(this);'>இங்கே தொடவும்</div><br>"+
+									    "</div></li>";
+					   $("#BookList").append(listValue);
+					   $('#dvLoading').fadeOut(2000);
+		               //$('#BookList').listview('refresh');                  
+				    } 
+					var listvalue1="<label>"+"<div>"+book_name+"</div>"+"</label>";
+					$("#labeldiv").append(listvalue1);
+			    });
+			})
+
+		//});
+	
+	  
+	  function back()
+	  {
+			window.history.back()
+	  }
+	  function viewdetails(id)
+			  {
+				$('#dvLoading').fadeIn(2000);
+				//  $('#dvLoading').fadeIn('slow');
+			   // $('#dvLoading').fadeOut(2000);
+				  dealid = id.id;
+				  downloadAndOpenPDF(dealid, 'LIFT.pdf', '/sdcard/LIFT/');
+				  //downloadAndOpenPDF('http://www.egazette.nic.in/WriteReadData/2014/161130.pdf', 'LIFT.pdf', '/sdcard/LIFT/');
+				  
+			  }
+  	</script> 
+	<script>
+		$(window).load(function()
+		{
+			  //$('#dvLoading').fadeOut(2000);
+		});
+
+		$(document).on('click', 'a[href^="http"]', function (e) {
+            var url = $(this).attr('href');
+            navigator.app.loadUrl(url, { openExternal: true });
+            e.preventDefault();
+        });
+		</script>
+    <!-- css -->
+   	<link rel="stylesheet" href="assets/css/trainner.css">   
+</head> 
+<body>
+	
+    <div data-role="page" id="get_case_law"  >
+	<div id="dvLoading"></div>
+	<div data-role="header" data-position="fixed" class="page-header">
+   	<div class="logo">
+    <!--<a onclick="back();"><div class="hdarrow"><img src="images/headder-arrow.png" width="47" height="33"></div></a>-->
+    <div  class="hdlogo" >Law In Finger Tips</div>
+    <!--<div class="hdnut"><a href="lift-screen-6T.html" rel="external" ><img src="images/nut.png" width="31" height="32"></a></div>-->
+    </div>
+	</div>
+  	<div data-role="content" >
+    <div class="ui-grid-a" style="margin-top:15px; padding-bottom: 15px;" id='login-list'>
+    <div style="width:60%; margin:auto; text-align:center; ">
+    <label id="labeldiv" style="color:#333;"></label>
+    </div>
+    <div class="login-list-view" style="margin-top:10px;" id="login-list">
+		<ul data-role="listview"  id="BookList">    
+		</ul>
+	</div>
+    </div>
+<div class="clear" style="margin-top:25px;"></div>
+    
+	</div><!-- /page -->
+	</div>
+	<script type="text/javascript">
+		if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) 
+		{
+			document.write('<link rel="stylesheet" href="assets\/add-bubble\/style\/add2home.css">');
+			document.write('<script type="application\/javascript" src="assets\/add-bubble\/src\/add2home.js" charset="utf-8"><\/s' + 'cript>');
+		}
+	</script>
+</body>
+</html>
